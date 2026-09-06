@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>術科考試抽籤</title>
+    <style>
+        /* 馬卡龍色系設計與置中排版 */
+        body {
+            background-color: #FDF6E3; /* 柔和的奶油底色 */
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #555;
+        }
+        .container {
+            background-color: #FFD1DC; /* 馬卡龍粉紅 */
+            padding: 40px 60px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            color: #7B8D8E;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+        button {
+            background-color: #AEC6CF; /* 馬卡龍粉藍 */
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            color: #FFF;
+            transition: background-color 0.3s, transform 0.1s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        button:hover {
+            background-color: #9CB4BE;
+        }
+        button:active {
+            transform: scale(0.97);
+        }
+        /* 抽籤結果區塊 */
+        .result-card {
+            margin-top: 30px;
+            background: #FFFFFF;
+            padding: 25px;
+            border-radius: 20px;
+            display: none; /* 預設隱藏 */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            animation: fadeIn 0.5s ease;
+        }
+        .result-card img {
+            width: 100%;
+            max-width: 250px;
+            height: auto;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border: 2px dashed #FFD1DC;
+        }
+        .result-card h2 {
+            margin: 10px 0 5px;
+            color: #333;
+            font-size: 24px;
+        }
+        .result-card h3 {
+            margin: 0;
+            color: #888;
+            font-size: 16px;
+            font-weight: normal;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>✨ 術科考試</h1>
+        <button onclick="drawMuscle()">開始術科考試抽籤</button>
+        
+        <div id="resultBox" class="result-card">
+            <img id="muscleImg" src="" alt="肌肉圖片">
+            <h2 id="muscleZh"></h2>
+            <h3 id="muscleEn"></h3>
+        </div>
+    </div>
+
+    <script>
+        // 肌肉資料題庫
+        const muscles = [
+            { zh: "胸小肌", en: "Pectoralis Minor", img: "https://via.placeholder.com/300x200/FFD1DC/7B8D8E?text=胸小肌圖片" },
+            { zh: "提肩胛肌", en: "Levator Scapularis", img: "https://via.placeholder.com/300x200/FDFD96/7B8D8E?text=提肩胛肌圖片" },
+            { zh: "肱二頭肌", en: "Biceps brachii longus/brevis", img: "https://via.placeholder.com/300x200/AEC6CF/7B8D8E?text=肱二頭肌圖片" },
+            { zh: "股四頭肌", en: "Quadriceps", img: "https://via.placeholder.com/300x200/B39EB5/7B8D8E?text=股四頭肌圖片" },
+            { zh: "臀大肌", en: "Gluteus Maximus", img: "https://via.placeholder.com/300x200/FFB347/7B8D8E?text=臀大肌圖片" },
+            { zh: "腓腸肌", en: "Gastrocnemius", img: "https://via.placeholder.com/300x200/CFCFC4/7B8D8E?text=腓腸肌圖片" }
+        ];
+
+        function drawMuscle() {
+            // 隨機抽取一個肌肉
+            const randomIndex = Math.floor(Math.random() * muscles.length);
+            const selected = muscles[randomIndex];
+            
+            // 更新網頁內容
+            document.getElementById('muscleZh').textContent = selected.zh;
+            document.getElementById('muscleEn').textContent = selected.en;
+            document.getElementById('muscleImg').src = selected.img;
+            
+            // 顯示結果區塊
+            document.getElementById('resultBox').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
